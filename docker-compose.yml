@@ -1,0 +1,20 @@
+services:
+  n8n:
+    image: docker.n8n.io/n8nio/n8n
+    container_name: n8n
+    restart: unless-stopped
+    ports:
+      - "5678:5678"
+    environment:
+      - GENERIC_TIMEZONE=America/Detroit
+      - TZ=America/Detroit
+      # Lab only: allows login over plain HTTP on a LAN. Remove when n8n is behind HTTPS.
+      - N8N_SECURE_COOKIE=false
+      # The address n8n uses to build form, webhook, and OAuth callback URLs.
+      # Replace with your own (e.g. http://<vm-ip>:5678/ or https://n8n.yourdomain.com/).
+      - WEBHOOK_URL=http://<your-n8n-host>:5678/
+    volumes:
+      - n8n_data:/home/node/.n8n
+
+volumes:
+  n8n_data:

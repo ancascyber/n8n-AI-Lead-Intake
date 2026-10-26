@@ -1,0 +1,4 @@
+.env
+*.env
+# Raw workflow exports may contain emails or document IDs. Commit only the sanitized copy.
+workflow/*-raw.json
